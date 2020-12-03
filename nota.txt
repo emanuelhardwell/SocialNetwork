@@ -1,0 +1,20 @@
+=== dependencies ===
+    express
+    express-handlebars
+    mongoose
+    morgan 
+    multer
+    fs-extra 
+    errorhandler
+    md5
+    dotenv
+
+=== dev dependencies ===
+    nodemon -D 
+
+
+#####
+    multer = para guardar las imagenes en la BD
+    fs-extra = para subir las imagenes 
+    errorhandler = para el error de 404
+    md5 cifrado de datos de los comentarios 
