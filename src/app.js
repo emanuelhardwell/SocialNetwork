@@ -32,7 +32,7 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(
-  multer({ dest: path.join(__dirname, "./uploads/temp") }).single("image")
+  multer({ dest: path.join(__dirname, "./public/uploads/temp") }).single("image")
 );
 
 //routes
