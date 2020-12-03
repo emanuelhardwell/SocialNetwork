@@ -33,6 +33,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(multer({ dest: "uploads/temp" }).single("image"));
 
+//routes
+app.use(require("./routes/route.routes"));
+
 //file static
 app.use(express.static(path.join(__dirname, "public")));
 
