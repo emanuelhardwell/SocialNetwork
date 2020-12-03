@@ -6,6 +6,10 @@ const path = require("path");
 const morgan = require("morgan");
 const multer = require("multer");
 
+//
+require("dotenv").config();
+require("./db");
+
 const app = express();
 
 //config
