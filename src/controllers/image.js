@@ -2,10 +2,6 @@
 /*  */
 const controller = {};
 
-controller.index = (req, res) => {
-  res.send("HOLA BEBE desde imagen");
-};
-
 controller.index = (req, res) => {};
 controller.create = (req, res) => {};
 controller.like = (req, res) => {};

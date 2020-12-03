@@ -1,0 +1,8 @@
+/*  */
+/*  */
+body {
+  background: radial-gradient(rgb(61, 57, 57), rgb(27, 27, 27));
+  min-height: 100vh;
+  font-family: "Oswald", sans-serif;
+  color: #fff;
+}

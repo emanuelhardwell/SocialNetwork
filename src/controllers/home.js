@@ -3,7 +3,7 @@
 const controller = {};
 
 controller.index = (req, res) => {
-  res.send("HOLA BEBE");
+  res.render("index");
 };
 
 module.exports = controller;
