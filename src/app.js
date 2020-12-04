@@ -39,7 +39,7 @@ app.use(
 app.use(require("./routes/route.routes"));
 
 //file static
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/public",express.static(path.join(__dirname, "public")));
 
 //listen the server
 app.listen(app.get("port"), () => {

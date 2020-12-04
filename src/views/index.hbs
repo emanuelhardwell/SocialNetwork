@@ -18,12 +18,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="title" id="title" class="form-control"
-                                placeholder="Title of image">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="Title of image"
+                                value="{{ title}}">
                         </div>
                         <div class="form-group">
                             <textarea name="description" id="description" class="form-control"
-                                placeholder="Title of image"></textarea>
+                                placeholder="Title of image">{{description}}</textarea>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary">Send the file</button>
@@ -35,6 +35,24 @@
         {{!-- col-md-4 --}}
         <div class="col-md-4">
 
+        </div>
+    </div>
+</div>
+{{!--  --}}
+{{!-- list of images recently --}}
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        <h4>Image Upload recently</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {{#each imageFind}}
+            <div class="col-md-4">
+                <a href="/image/{{uniqueId}}">
+                    <img src="/public/uploads/{{filename}}" alt="imagen pro" class="w-100 h-100 img-thumbnail">
+                </a>
+            </div>
+            {{/each}}
         </div>
     </div>
 </div>
