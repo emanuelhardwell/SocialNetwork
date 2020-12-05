@@ -5,18 +5,24 @@ const fs = require("fs-extra");
 const md5 = require("md5");
 const { randomNumber } = require("../helpers/lib");
 const { Image, Comment } = require("../models/indexModels");
+const image = require("../models/image");
 
 const controller = {};
 
 controller.index = async (req, res) => {
   let idImage = req.params.image_id;
   const imageFind = await Image.findOne({ filename: { $regex: idImage } });
-  const commentFind = await Comment.find({ image_id: imageFind._id });
-  /* console.log(imageFind); */
-  res.render("image", {
-    imageFind,
-    commentFind,
-  });
+  if (imageFind) {
+    imageFind.views = imageFind.views + 1;
+    await imageFind.save();
+    const commentFind = await Comment.find({ image_id: imageFind._id });
+    res.render("image", {
+      imageFind,
+      commentFind,
+    });
+  } else {
+    res.redirect("/");
+  }
 };
 
 controller.create = (req, res) => {
@@ -94,9 +100,8 @@ controller.create = (req, res) => {
 controller.like = (req, res) => {};
 
 controller.comment = async (req, res) => {
-  const searchImage = await Image.findOne({
-    filename: { $regex: req.params.image_id },
-  });
+  let idImage = req.params.image_id;
+  const searchImage = await Image.findOne({ filename: { $regex: idImage } });
   if (searchImage) {
     const newComment = new Comment(req.body);
     newComment.gravatar = md5(newComment.email);
@@ -104,6 +109,8 @@ controller.comment = async (req, res) => {
     await newComment.save();
 
     res.redirect("/image/" + searchImage.uniqueId);
+  } else {
+    res.redirect("/");
   }
 };
 
