@@ -8,6 +8,7 @@
     errorhandler
     md5
     dotenv
+    timeago.js
 
 === dev dependencies ===
     nodemon -D 

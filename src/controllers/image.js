@@ -7,7 +7,14 @@ const { Image } = require("../models/indexModels");
 
 const controller = {};
 
-controller.index = (req, res) => {};
+controller.index = async (req, res) => {
+  let idImage = req.params.image_id;
+  const imageFind = await Image.findOne({ filename: { $regex: idImage } });
+  console.log(imageFind);
+  res.render("image", {
+    imageFind,
+  });
+};
 
 controller.create = (req, res) => {
   const { title, description } = req.body;
@@ -69,7 +76,7 @@ controller.create = (req, res) => {
           });
 
           const imageSaved = await newImage.save();
-          res.send("OKKKKKK");
+          res.redirect("/image/" + newNameImage);
         } else {
           await fs.unlink(imageTempPath);
         }

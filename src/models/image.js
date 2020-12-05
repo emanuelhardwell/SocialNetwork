@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const path = require("path");
 
-
 const ImageSchema = new Schema({
   title: { type: String },
   description: { type: String },

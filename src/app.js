@@ -6,6 +6,12 @@ const path = require("path");
 const morgan = require("morgan");
 const multer = require("multer");
 
+/* modules extra */
+const Handlebars = require("handlebars");
+const {
+  allowInsecurePrototypeAccess,
+} = require("@handlebars/allow-prototype-access");
+
 //
 require("dotenv").config();
 require("./db");
@@ -22,6 +28,7 @@ app.engine(
     layoutsDir: path.join(app.get("views"), "layouts"),
     partialsDir: path.join(app.get("views"), "partials"),
     extname: ".hbs",
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
     helpers: require("./server/helper"),
   })
 );
@@ -32,14 +39,16 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(
-  multer({ dest: path.join(__dirname, "./public/uploads/temp") }).single("image")
+  multer({ dest: path.join(__dirname, "./public/uploads/temp") }).single(
+    "image"
+  )
 );
 
 //routes
 app.use(require("./routes/route.routes"));
 
 //file static
-app.use("/public",express.static(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 //listen the server
 app.listen(app.get("port"), () => {
