@@ -38,21 +38,41 @@
         <button class="btn btn-info" id="btn-show-comment">Comment</button>
     </div>
     <div class="card-body">
-        <form action="/image/{{imageFind.uniqueId}}/comment" method="post">
-            <div class="form-group">
-                <input type="text" name="name" class="form-control" placeholder="Name">
-            </div>
-            <div class="form-group">
-                <input type="email" name="email" class="form-control" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <textarea name="comment" class="form-control" placeholder="Comment"></textarea>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-success" id="btn-comment">
-                    Send Comment
-                </button>
-            </div>
-        </form>
+        <blockquote>
+            <form action="/image/{{imageFind.uniqueId}}/comment" method="post">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <textarea name="comment" class="form-control" placeholder="Comment"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" id="btn-comment">
+                        Send Comment
+                    </button>
+                </div>
+            </form>
+        </blockquote>
+        {{!-- list of comments --}}
+        <ul class="list-group-item">
+            {{#each commentFind}}
+            <li class="list-group-item">
+                <div class="row">
+                    <a href="#" class="col text-center">
+                        <img src="https://gravatar.com/avatar/{{gravatar}}?d=monsterid&s=45" alt="icono img">
+                    </a>
+                    <blockquote class="col">
+                        <p class="lead">{{comment}}</p>
+                        <footer class="blockquote-footer">
+                            {{name}} --- {{timeago date}}
+                        </footer>
+                    </blockquote>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
     </div>
 </div>

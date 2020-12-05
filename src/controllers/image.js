@@ -11,9 +11,11 @@ const controller = {};
 controller.index = async (req, res) => {
   let idImage = req.params.image_id;
   const imageFind = await Image.findOne({ filename: { $regex: idImage } });
-  console.log(imageFind);
+  const commentFind = await Comment.find({ image_id: imageFind._id });
+  /* console.log(imageFind); */
   res.render("image", {
     imageFind,
+    commentFind,
   });
 };
 
