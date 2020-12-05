@@ -1,7 +1,7 @@
 {{!--  --}}
-{{!--  --}}
+{{!-- CARD OF IMGAE --}}
 <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
         <h4>{{imageFind.title}}</h4>
         <button class="btn btn-danger" id="btn-delete" data-id="{{uniqueId}}">
             <i class="fas fa-times"></i> Delete
@@ -27,7 +27,32 @@
         <p>
             <i class="far fa-clock"></i> {{timeago imageFind.date}}
         </p>
+    </div>
+</div>
 
-
+{{!--  --}}
+{{!-- CARD OF COMMENT --}}
+<div class="card mt-3">
+    <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
+        <h4>Comments</h4>
+        <button class="btn btn-info" id="btn-show-comment">Comment</button>
+    </div>
+    <div class="card-body">
+        <form action="/image/{{imageFind.uniqueId}}/comment" method="post">
+            <div class="form-group">
+                <input type="text" name="name" class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <textarea name="comment" class="form-control" placeholder="Comment"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" id="btn-comment">
+                    Send Comment
+                </button>
+            </div>
+        </form>
     </div>
 </div>
