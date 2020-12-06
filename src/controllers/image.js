@@ -125,6 +125,18 @@ controller.comment = async (req, res) => {
   }
 };
 
-controller.remove = (req, res) => {};
+/* IMAGE DELETE AND COMMENTS DELETE */
+controller.remove = async (req, res) => {
+  let idImage = req.params.image_id;
+  const searchImage = await Image.findOne({ filename: { $regex: idImage } });
+  if (searchImage) {
+    await fs.unlink(
+      path.resolve("./src/public/uploads/" + searchImage.filename)
+    );
+    await Comment.deleteOne({ image_id: searchImage._id });
+    await searchImage.remove();
+    res.json(true);
+  }
+};
 
 module.exports = controller;
