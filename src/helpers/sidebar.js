@@ -4,4 +4,17 @@ const Images = require("./images");
 const Comments = require("./comments");
 const Stats = require("./stats");
 
-module.exports = (viewModel) => {};
+module.exports = async (viewModel) => {
+  const results = await Promise.all([
+    Stats(),
+    Images.popular(),
+    Comments.newest(),
+  ]);
+
+  viewModel.sidebar = {
+    stats: results[0],
+    images: results[1],
+    comments: results[2],
+  };
+  return viewModel;
+};
