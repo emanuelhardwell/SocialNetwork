@@ -1,5 +1,13 @@
 /*  */
-/*  */
+/*  show comments*/
+$("#post-comment").hide();
+
+$("#btn-show-comment").click(function (e) {
+  e.preventDefault();
+  $("#post-comment").slideToggle();
+});
+
+/* like image */
 $("#btn-like").click(function (e) {
   e.preventDefault();
   let imgId = $(this).data("id");
