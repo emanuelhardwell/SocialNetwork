@@ -13,7 +13,7 @@ module.exports = async (viewModel) => {
 
   viewModel.sidebar = {
     stats: results[0],
-    images: results[1],
+    popular: results[1],
     comments: results[2],
   };
   return viewModel;
