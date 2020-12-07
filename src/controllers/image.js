@@ -6,20 +6,23 @@ const md5 = require("md5");
 const { randomNumber } = require("../helpers/lib");
 const { Image, Comment } = require("../models/indexModels");
 const image = require("../models/image");
+const sidebar = require("../helpers/sidebar");
 
 const controller = {};
 
 controller.index = async (req, res) => {
+  let viewModel = { imageFind: {}, commentFind: {} };
+
   let idImage = req.params.image_id;
   const imageFind = await Image.findOne({ filename: { $regex: idImage } });
   if (imageFind) {
     imageFind.views = imageFind.views + 1;
+    viewModel.imageFind = imageFind;
     await imageFind.save();
     const commentFind = await Comment.find({ image_id: imageFind._id });
-    res.render("image", {
-      imageFind,
-      commentFind,
-    });
+    viewModel.commentFind = commentFind;
+    viewModel = await sidebar(viewModel);
+    res.render("image", viewModel);
   } else {
     res.redirect("/");
   }
