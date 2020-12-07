@@ -32,7 +32,7 @@ async function likeCount() {
       },
     },
   ]);
-  return view[0].likeTotal;
+  return like[0].likeTotal;
 }
 
 module.exports = async () => {
@@ -43,9 +43,9 @@ module.exports = async () => {
     likeCount(),
   ]);
   return {
-    imageFinaly: popularResult[0],
-    commentFinaly: popularResult[1],
-    viewFinaly: popularResult[2],
-    likeFinaly: popularResult[3],
+    imageFinally: popularResult[0],
+    commentFinally: popularResult[1],
+    viewFinally: popularResult[2],
+    likeFinally: popularResult[3],
   };
 };
